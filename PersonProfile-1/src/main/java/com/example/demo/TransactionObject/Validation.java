@@ -16,11 +16,12 @@ public class Validation {
 		try {
 			checkrefDigits();
 			checkDateFormat();
+			checkCurrentDate();
 			checkPayerAccNo();
 			checkPayeeAccNo();
 		}
-		catch (Exception e){
-			System.out.println("Pass on exception to Angular");
+		catch (Exceptions e){
+			System.out.println("Pass on exception to Angular: "+e);
 		}
 	}
 	void checkrefDigits() throws Exceptions{
@@ -30,7 +31,7 @@ public class Validation {
 			throw new Exceptions("Invalid Transaction Reference");
 		}
 	}
-	void checkDateFormat() throws Exception{
+	void checkDateFormat() throws Exceptions{
 		if(Tobj.getDate().length()==8)
 		{
 			
@@ -46,11 +47,29 @@ public class Validation {
 			}
 			catch(ParseException e)
 			{
-				throw new Exceptions("Invalid DateFormat");
+				throw new Exceptions("Invalid Date Format");
 			}
 			
 			
 		}
+	}
+	void checkCurrentDate() throws Exceptions
+	{
+		  try{
+				String sDate1="2021-03-15";  
+			    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
+			    Date currDate=new Date();
+			    System.out.println(currDate);
+			    if(date1.getDate()!=(currDate.getDate()) || date1.getMonth()!=(currDate.getMonth()) || date1.getYear()!=(currDate.getYear()))
+			    {
+			        throw new Exceptions("Not Current Date");
+			        
+			    }
+				}
+				catch(ParseException e)
+				{
+					throw new Exceptions("Invalid Date Format");
+				}
 	}
 	void checkPayerAccNo() throws Exceptions{
 		if(Tobj.getPayerAcc().length()<12)
