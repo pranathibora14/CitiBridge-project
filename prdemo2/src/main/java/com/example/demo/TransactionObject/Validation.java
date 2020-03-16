@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.example.demo.ExceptionHandling.Exceptions;
+import com.example.demo.TransactionObject.Transaction;
 
 public class Validation {
 	Transaction Tobj;
@@ -30,7 +31,7 @@ public class Validation {
 	void checkrefDigits() throws Exceptions{
 		if(Tobj.getTransRef().length()!=12)
 		{
-			Tobj.EC=1;
+			Tobj.setEC(1);
 			throw new Exceptions("Invalid Transaction Reference");
 		}
 	}
@@ -59,8 +60,7 @@ public class Validation {
 	void checkCurrentDate() throws Exceptions
 	{
 		  try{
-				String sDate1="2021-03-15";  
-			    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
+			    Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(Tobj.getDate());; 
 			    Date currDate=new Date();
 			    System.out.println(currDate);
 			    if(date1.getDate()!=(currDate.getDate()) || date1.getMonth()!=(currDate.getMonth()) || date1.getYear()!=(currDate.getYear()))
@@ -77,14 +77,14 @@ public class Validation {
 	void checkPayerAccNo() throws Exceptions{
 		if(Tobj.getPayerAcc().length()<12)
 		{
-			Tobj.EC=3;
+			Tobj.setEC(3);
 			throw new Exceptions("Invalid Payer Account Number");
 		}
 	}
 	void checkPayeeAccNo() throws Exceptions{
 		if(Tobj.getPayerAcc().length()<12)
 		{
-			Tobj.EC=4;
+			Tobj.setEC(4);
 			throw new Exceptions("Invalid Payee Account Number");
 		}
 	}

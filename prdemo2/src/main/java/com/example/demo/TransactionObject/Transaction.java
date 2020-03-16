@@ -8,7 +8,7 @@ public class Transaction {
 	private String PayeeName;
 	private String PayeeAcc;
 	private Float amount;
-	int EC;
+	private int EC;
 	public Transaction(String TransRef,String date, String PayerName, String PayerAcc, String PayeeName, String PayeeAcc,Float Amount)
 	{
 		this.setTransRef(TransRef);
@@ -18,7 +18,7 @@ public class Transaction {
 		this.setPayeeName(PayeeName);
 		this.setPayeeAcc(PayeeAcc);
 		this.setAmount(Amount);
-		EC=0;
+		setEC(0);
 	}
 	
 	public String getTransRef() {
@@ -62,5 +62,13 @@ public class Transaction {
 	}
 	public void setAmount(Float amount) {
 		this.amount = amount;
+	}
+
+	public int getEC() {
+		return EC;
+	}
+
+	public void setEC(int eC) {
+		EC = eC;
 	}
 }
