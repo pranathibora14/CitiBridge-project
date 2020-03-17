@@ -29,7 +29,7 @@ public class Controller {
 		return aaa.getNames();
 	}
 	
-	public void insertIntoDB(Transaction Tobj)
+	public void insertIntoDB(Transaction Tobj,String tbn)
 	{
 
 		
@@ -38,7 +38,7 @@ public class Controller {
 			String url = "jdbc:mysql://localhost:3306/db"; 
 	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
 	        Statement st = conn.createStatement(); 
-	        String sql ="INSERT INTO ValidatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        String sql ="INSERT INTO "+tbn+"(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
 	        
 	        PreparedStatement pstmt = conn.prepareStatement(sql); {
 	        	pstmt.setString(1, Tobj.getTransRef());
@@ -56,7 +56,14 @@ public class Controller {
             System.out.println("Doneeeeeeeeeeeeeee");
            
         } catch (Exception e) { 
+        	int j=0;
             System.err.println("Got an exception! "+e); 
+            Controller cc=new Controller();
+//            if(j==0) {
+//            	cc.insertIntoDB(Tobj,"validateFail");
+//            	j=1;
+//            }
+            
             
         } 
 		

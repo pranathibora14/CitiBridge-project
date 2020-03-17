@@ -45,7 +45,10 @@ public class Lala {
             System.out.println(Tobj.getDate());
             words.clear();
             if(z) {
-            	cc.insertIntoDB(Tobj);
+            	cc.insertIntoDB(Tobj,"validatePass");
+            }
+            else {
+            	cc.insertIntoDB(Tobj,"validateFail");
             }
             lineNum++;    
             line = input.readLine();
