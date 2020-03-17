@@ -18,7 +18,7 @@ public class Lala {
     }
  
     private void readFile()throws IOException,  Exceptions{
-    	File file = new File("C:\\Users\\nigudkar\\eclipse-workspace\\Hello\\src\\h\\h1\\Untitled 1");
+    	File file = new File("C:\\Users\\nigudkar\\Desktop\\CitiProj\\github\\CitiBridge-project\\prdemo2\\src\\main\\java\\com\\example\\demo\\tts.txt");
     	FileReader fileReader = new FileReader(file);
     	BufferedReader input = new BufferedReader(fileReader);
         words = new ArrayList<Word>();
@@ -52,8 +52,6 @@ public class Lala {
         
     }
     
- 
-   
     class Word{
         private int lineNum;
         private String name;
