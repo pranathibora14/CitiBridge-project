@@ -8,7 +8,7 @@ public class Exceptions extends Exception {
 	}
 	public String toString()
 	{
-		return "Exception occurred: "+s1;
+		return ""+s1;
 	}
 	
 }

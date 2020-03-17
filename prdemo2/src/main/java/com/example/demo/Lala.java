@@ -6,17 +6,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.example.demo.ExceptionHandling.Exceptions;
 import com.example.demo.TransactionObject.Transaction;
 import com.example.demo.TransactionObject.Validation;
 
 
 public class Lala {
     private ArrayList<Word> words;
-    public void start() throws IOException {
+    public void start() throws IOException, Exceptions {
         readFile(); 
     }
  
-    private void readFile()throws IOException{
+    private void readFile()throws IOException,  Exceptions{
     	File file = new File("C:\\Users\\nigudkar\\eclipse-workspace\\Hello\\src\\h\\h1\\Untitled 1");
     	FileReader fileReader = new FileReader(file);
     	BufferedReader input = new BufferedReader(fileReader);
@@ -45,6 +46,7 @@ public class Lala {
             System.out.println(Tobj.getDate());
             words.clear();
             if(z) {
+            	
             	cc.insertIntoDB(Tobj,"validatePass");
             }
             else {

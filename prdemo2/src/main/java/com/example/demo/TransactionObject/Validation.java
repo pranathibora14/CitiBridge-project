@@ -21,10 +21,15 @@ public class Validation {
 			checkCurrentDate();
 			checkPayerAccNo();
 			checkPayeeAccNo();
+			Tobj.setEC(1);
 		}
 		catch (Exceptions e){
 			System.out.println("Pass on exception to Angular: "+e);
+			String res=e.toString();
+			System.out.println(res+"passing it onnn");
+			Tobj.setReason(res);
 			z=false;
+			Tobj.setEC(2);
 		}
 		return z;
 	}

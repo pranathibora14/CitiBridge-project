@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.ExceptionHandling.Exceptions;
 import com.example.demo.TransactionObject.Transaction;
 
 @Repository
@@ -29,42 +30,52 @@ public class Controller {
 		return aaa.getNames();
 	}
 	
-	public void insertIntoDB(Transaction Tobj,String tbn)
+	public void insertIntoDB(Transaction Tobj,String tbn) throws Exceptions
 	{
-
-		
 		try { 
-	       // System.out.println("float vala" +Tobj.getAmount());
 			String url = "jdbc:mysql://localhost:3306/db"; 
 	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
-	        Statement st = conn.createStatement(); 
-	        String sql ="INSERT INTO "+tbn+"(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        if(Tobj.getEC()==1) {
+	        	String sql ="INSERT INTO "+tbn+"(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+		        
+		        PreparedStatement pstmt = conn.prepareStatement(sql); {
+		        	pstmt.setString(1, Tobj.getTransRef());
+		            pstmt.setString(2, Tobj.getDate());
+		            pstmt.setString(3, Tobj.getPayerName());
+		            pstmt.setString(4,Tobj.getPayerAcc());
+		            pstmt.setString(5, Tobj.getPayeeName());
+		            pstmt.setString(6, Tobj.getPayeeAcc());
+		            pstmt.setFloat(7, Tobj.getAmount());
+		            pstmt.setString(8, "VP");
+		            pstmt.executeUpdate();
+		            }
+	        }
+	        else {
+	        	System.out.println(Tobj.getReason()+"Reasoonnnnn");
+	        	String sql2 ="INSERT INTO validateFail (TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+		        PreparedStatement pstmt2 = conn.prepareStatement(sql2); {
+		        	pstmt2.setString(1, Tobj.getTransRef());
+		        	pstmt2.setString(2, Tobj.getDate());
+		        	pstmt2.setString(3, Tobj.getPayerName());
+		        	pstmt2.setString(4,Tobj.getPayerAcc());
+		        	pstmt2.setString(5, Tobj.getPayeeName());
+		        	pstmt2.setString(6, Tobj.getPayeeAcc());
+		        	pstmt2.setFloat(7, Tobj.getAmount());
+		        	pstmt2.setString(8, Tobj.getReason());
+		        	pstmt2.executeUpdate();
+		            }
+	        }
 	        
-	        PreparedStatement pstmt = conn.prepareStatement(sql); {
-	        	pstmt.setString(1, Tobj.getTransRef());
-	            pstmt.setString(2, Tobj.getDate());
-	            pstmt.setString(3, Tobj.getPayerName());
-	            pstmt.setString(4,Tobj.getPayerAcc());
-	            pstmt.setString(5, Tobj.getPayeeName());
-	            pstmt.setString(6, Tobj.getPayeeAcc());
-	            pstmt.setFloat(7, Tobj.getAmount());
-	            pstmt.setString(8, "VP");
-	            pstmt.executeUpdate();
-	            }
 	        
-
+	        
+	        Tobj.setEC(1);
             System.out.println("Doneeeeeeeeeeeeeee");
            
         } catch (Exception e) { 
-        	int j=0;
-            System.err.println("Got an exception! "+e); 
-            Controller cc=new Controller();
-//            if(j==0) {
-//            	cc.insertIntoDB(Tobj,"validateFail");
-//            	j=1;
-//            }
-            
-            
+            System.err.println("Got an SQL exception! "+e); 
+            String ss=e.getMessage();
+            Tobj.setEC(3);
+            throw new Exceptions(ss);
         } 
 		
 		
