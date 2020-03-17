@@ -45,13 +45,7 @@ public class Lala {
             z=v.validateTransaction();
             System.out.println(Tobj.getDate());
             words.clear();
-            if(z) {
-            	
-            	cc.insertIntoDB(Tobj,"validatePass");
-            }
-            else {
-            	cc.insertIntoDB(Tobj,"validateFail");
-            }
+            cc.insertIntoDB(Tobj);
             lineNum++;    
             line = input.readLine();
         }

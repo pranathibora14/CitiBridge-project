@@ -30,13 +30,13 @@ public class Controller {
 		return aaa.getNames();
 	}
 	
-	public void insertIntoDB(Transaction Tobj,String tbn) throws Exceptions
+	public void insertIntoDB(Transaction Tobj) throws Exceptions
 	{
 		try { 
 			String url = "jdbc:mysql://localhost:3306/db"; 
 	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
 	        if(Tobj.getEC()==1) {
-	        	String sql ="INSERT INTO "+tbn+"(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        	String sql ="INSERT INTO validatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
 		        
 		        PreparedStatement pstmt = conn.prepareStatement(sql); {
 		        	pstmt.setString(1, Tobj.getTransRef());
