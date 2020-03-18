@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -34,9 +34,9 @@ public class Controller {
 	{
 		try { 
 			String url = "jdbc:mysql://localhost:3306/db"; 
-	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
+	        Connection conn = DriverManager.getConnection(url,"root","pranathibora14"); 
 	        if(Tobj.getEC()==1) {
-	        	String sql ="INSERT INTO validatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        	String sql ="INSERT INTO ValidatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
 		        
 		        PreparedStatement pstmt = conn.prepareStatement(sql); {
 		        	pstmt.setString(1, Tobj.getTransRef());
@@ -77,7 +77,6 @@ public class Controller {
             Tobj.setEC(3);
             throw new Exceptions(ss);
         } 
-		
 		
 		
 		
