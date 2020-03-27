@@ -34,7 +34,7 @@ public class Controller {
 	{
 		try { 
 			String url = "jdbc:mysql://localhost:3306/db"; 
-	        Connection conn = DriverManager.getConnection(url,"root","pranathibora14"); 
+	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
 	        if(Tobj.getEC()==1) {
 	        	String sql ="INSERT INTO ValidatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
 		        

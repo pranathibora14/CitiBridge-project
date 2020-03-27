@@ -10,7 +10,7 @@ import com.example.demo.ExceptionHandling.Exceptions;
 import com.example.demo.TransactionObject.Transaction;
 import com.example.demo.TransactionObject.Validation;
 import com.example.demo.controller.Controller;
-
+import com.example.demo.Sanctions.*;;
 
 public class ReadFile {
     private ArrayList<Word> words;
@@ -19,11 +19,12 @@ public class ReadFile {
     }
  
     private void readFile()throws IOException,  Exceptions{
-    	File file = new File("C:\\Users\\prana\\Downloads\\test.txt");
+    	File file = new File("C:\\Users\\nigudkar\\Desktop\\CitiProj\\github\\CitiBridge-project\\prdemo2\\src\\main\\java\\com\\example\\demo\\tts.txt");
     	FileReader fileReader = new FileReader(file);
     	BufferedReader input = new BufferedReader(fileReader);
         words = new ArrayList<Word>();
         Controller cc=new Controller();
+        
         int lineNum = 1;
         boolean z=false;
         char [] parse = {' '};
@@ -42,6 +43,7 @@ public class ReadFile {
             }
             Transaction Tobj=new Transaction(individualWords[0],individualWords[1],individualWords[2],individualWords[3],individualWords[4],individualWords[5],Float.parseFloat(individualWords[6]));
             Validation v=new Validation(Tobj);
+            Sanctions ss=new Sanctions(Tobj);
             System.out.println(Tobj.getDate());
             z=v.validateTransaction();
             System.out.println(Tobj.getDate());
@@ -55,6 +57,8 @@ public class ReadFile {
     			//Here pass on Tobj to angular. We need to display Payer name, Payee Name, and Error Code. Error Code is a field of Tobj. 
     			//Check out Tobj.getEC() method for the error codes table.  
             }
+            System.out.println("Now sanctions");
+            z=ss.validateSanction(Tobj);
             lineNum++;    
             line = input.readLine();
         } 
