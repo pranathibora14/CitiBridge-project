@@ -20,7 +20,7 @@ public class Controller {
 	public ArrayList<String> getNames()
 	{
 		ArrayList<String> Uname=new ArrayList<String>();
-		Uname.addAll(jdbctemplate.queryForList("select Amt from validatePass;", String.class));
+		Uname.addAll(jdbctemplate.queryForList("select Amt from ValidatePass;", String.class));
 		//jdbctemplate.q
 		return Uname;
 	}
@@ -34,7 +34,7 @@ public class Controller {
 	{
 		try { 
 			String url = "jdbc:mysql://localhost:3306/db"; 
-	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
+	        Connection conn = DriverManager.getConnection(url,"root","pranathibora14"); 
 	        if(Tobj.getEC()==1) {
 	        	String sql ="INSERT INTO ValidatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
 		        

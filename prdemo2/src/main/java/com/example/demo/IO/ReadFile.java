@@ -19,7 +19,7 @@ public class ReadFile {
     }
  
     private void readFile()throws IOException,  Exceptions{
-    	File file = new File("C:\\Users\\nigudkar\\Desktop\\CitiProj\\github\\CitiBridge-project\\prdemo2\\src\\main\\java\\com\\example\\demo\\tts.txt");
+    	File file = new File("C:\\Users\\prana\\Downloads\\test.txt");
     	FileReader fileReader = new FileReader(file);
     	BufferedReader input = new BufferedReader(fileReader);
         words = new ArrayList<Word>();
