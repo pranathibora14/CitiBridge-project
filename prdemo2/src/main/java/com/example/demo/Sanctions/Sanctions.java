@@ -16,6 +16,7 @@ public class Sanctions {
 	public boolean validateSanction(Transaction Tobj1){
 		boolean z=true;
 		try {
+			formatNames();
 			searchPayer();
 			searchPayee();
 			amtSanction();
@@ -35,7 +36,18 @@ public class Sanctions {
 			throw new Exceptions("Sanctions can't allow this limit");
 		}
 	}
-	
+	public void formatNames() 
+	{
+		//System.out.println("Payer Name: "+Tobj.getPayerName());
+		String PayerName=Tobj.getPayerName().replaceAll("[^a-zA-Z]", "");
+		Tobj.setPayerName(PayerName);
+		System.out.println("PayerName edited: "+Tobj.getPayerName());
+		
+		//System.out.println("PayeeName: "+Tobj.getPayeeName());
+		String PayeeName=Tobj.getPayeeName().replaceAll("[^a-zA-Z]", "");
+		Tobj.setPayeeName(PayeeName);
+		System.out.println("PayeeName edited: "+Tobj.getPayeeName());
+	}
 	public void searchPayer() throws IOException, Exceptions{
 		File file = new File("E:\\Github\\CitiBridge-project\\Sanctions_List.txt");
 		FileReader fileReader = new FileReader(file);
