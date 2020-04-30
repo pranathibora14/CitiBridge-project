@@ -10,6 +10,15 @@ public class Transaction {
 	private Float amount;
 	private int EC;
 	private String reason;
+	private String cntry;
+	public String getCntry() {
+		return cntry;
+	}
+
+	public void setCntry(String cntry) {
+		this.cntry = cntry;
+	}
+
 	public String getReason() {
 		return reason;
 	}
@@ -18,7 +27,7 @@ public class Transaction {
 		this.reason = reason;
 	}
 
-	public Transaction(String TransRef,String date, String PayerName, String PayerAcc, String PayeeName, String PayeeAcc,Float Amount)
+	public Transaction(String TransRef,String date, String PayerName, String PayerAcc, String PayeeName, String PayeeAcc,String cntry,Float Amount)
 	{
 		this.setTransRef(TransRef);
 		this.setDate(date);
@@ -26,6 +35,7 @@ public class Transaction {
 		this.setPayerAcc(PayerAcc);
 		this.setPayeeName(PayeeName);
 		this.setPayeeAcc(PayeeAcc);
+		this.setCntry(cntry);
 		this.setAmount(Amount);
 		setEC(0);
 	}

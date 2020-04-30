@@ -34,9 +34,9 @@ public class Controller {
 	{
 		try { 
 			String url = "jdbc:mysql://localhost:3306/db"; 
-	        Connection conn = DriverManager.getConnection(url,"root","pranathibora14"); 
+	        Connection conn = DriverManager.getConnection(url,"root","saphana12##"); 
 	        if(Tobj.getEC()==1) {
-	        	String sql ="INSERT INTO ValidatePass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        	String sql ="INSERT INTO validatepass(TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Country,Amt,Status)VALUES(?,?,?,?,?,?,?,?,?)";
 		        
 		        PreparedStatement pstmt = conn.prepareStatement(sql); {
 		        	pstmt.setString(1, Tobj.getTransRef());
@@ -45,14 +45,15 @@ public class Controller {
 		            pstmt.setString(4,Tobj.getPayerAcc());
 		            pstmt.setString(5, Tobj.getPayeeName());
 		            pstmt.setString(6, Tobj.getPayeeAcc());
-		            pstmt.setFloat(7, Tobj.getAmount());
-		            pstmt.setString(8, "VP");
+		            pstmt.setString(7, Tobj.getCntry());
+		            pstmt.setFloat(8, Tobj.getAmount());
+		            pstmt.setString(9, "VP");
 		            pstmt.executeUpdate();
 		            }
 	        }
 	        else {
 	        	System.out.println(Tobj.getReason()+"Reasoonnnnn");
-	        	String sql2 ="INSERT INTO validateFail (TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Amt,Status)VALUES(?,?,?,?,?,?,?,?)";
+	        	String sql2 ="INSERT INTO validatefail (TransactionRef,ValueDate,PayerName,PayerAcc,PayeeName,PayeeAcc,Country,Amt,Status)VALUES(?,?,?,?,?,?,?,?,?)";
 		        PreparedStatement pstmt2 = conn.prepareStatement(sql2); {
 		        	pstmt2.setString(1, Tobj.getTransRef());
 		        	pstmt2.setString(2, Tobj.getDate());
@@ -60,8 +61,9 @@ public class Controller {
 		        	pstmt2.setString(4,Tobj.getPayerAcc());
 		        	pstmt2.setString(5, Tobj.getPayeeName());
 		        	pstmt2.setString(6, Tobj.getPayeeAcc());
-		        	pstmt2.setFloat(7, Tobj.getAmount());
-		        	pstmt2.setString(8, Tobj.getReason());
+		        	pstmt2.setString(7, Tobj.getCntry());
+		        	pstmt2.setFloat(8, Tobj.getAmount());
+		        	pstmt2.setString(9, Tobj.getReason());
 		        	pstmt2.executeUpdate();
 		            }
 	        }

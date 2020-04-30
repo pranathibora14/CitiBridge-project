@@ -19,7 +19,7 @@ public class ReadFile {
     }
  
     private void readFile()throws IOException,  Exceptions{
-    	File file = new File("C:\\Users\\prana\\Downloads\\test.txt");
+    	File file = new File("C:\\Users\\nigudkar\\Desktop\\CitiProj\\github\\CitiBridge-project\\prdemo2\\src\\main\\java\\com\\example\\demo\\tts.txt");
     	FileReader fileReader = new FileReader(file);
     	BufferedReader input = new BufferedReader(fileReader);
         words = new ArrayList<Word>();
@@ -41,7 +41,7 @@ public class ReadFile {
                 
                 
             }
-            Transaction Tobj=new Transaction(individualWords[0],individualWords[1],individualWords[2],individualWords[3],individualWords[4],individualWords[5],Float.parseFloat(individualWords[6]));
+            Transaction Tobj=new Transaction(individualWords[0],individualWords[1],individualWords[2],individualWords[3],individualWords[4],individualWords[5],individualWords[6],Float.parseFloat(individualWords[7]));
             Validation v=new Validation(Tobj);
             Sanctions ss=new Sanctions(Tobj);
             System.out.println(Tobj.getDate());
@@ -49,6 +49,7 @@ public class ReadFile {
             System.out.println(Tobj.getDate());
             words.clear();
             try {
+            	
             cc.insertIntoDB(Tobj);
             }
             catch (Exceptions e)
